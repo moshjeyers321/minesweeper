@@ -2,6 +2,8 @@
 
 class Tile
 
+  attr_reader :board
+
   def initialize(board)
     @board = board
     @board_size = board.length
@@ -14,16 +16,26 @@ class Tile
 
 
   def inspect
-
+    { "revealed"=> @revealed, "bomb?"=> @bomb, "flagged?"=> @flagged, "pos"=> self.pos}
   end
 
   def neighbors
 
   end
 
+  def pos
+    pos = nil
+    board.each.with_index do |row, xi|
+      row.each.with_index do |col, yi|
+        pos = [xi, yi] if self == board[xi,yi]
+      end
+    end
+    pos
+  end
+
   def ==(other_tile)
     other_tile.is_a?(Tile) &&
-      other_tile.
+      other_tile.pos == self.pos
   end
 
   def flag
