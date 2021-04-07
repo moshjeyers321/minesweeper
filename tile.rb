@@ -17,6 +17,15 @@ class Tile
 
   end
 
+  def neighbors
+
+  end
+
+  def ==(other_tile)
+    other_tile.is_a?(Tile) &&
+      other_tile.
+  end
+
   def flag
     if !flagged
       flagged = true
