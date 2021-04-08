@@ -2,7 +2,7 @@ require_relative "tile"
 
 class Board
 
-  attr_reader :board_size, :num_bombs
+  attr_reader :board_size, :num_bombs, :board
   
   def initialize(board_size, num_bombs)
     @board_size, @num_bombs = board_size, num_bombs
@@ -34,5 +34,11 @@ class Board
   def [](pos)
     x,y = pos
     @board[x][y]
+  end
+
+  def render
+    board.each do |row|
+      puts row.map { |tile| tile.render }.join(" ")
+    end
   end
 end

@@ -60,7 +60,7 @@ class Tile
   end
 
   def flag
-    flagged = !flagged unless explored
+    @flagged = !flagged unless explored
   end
   
   def render
