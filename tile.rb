@@ -5,6 +5,17 @@ class Tile
   attr_reader :board, :bomb
   attr_accessor :flagged, :pos
 
+  DELTAS = [
+    [-1,-1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    [0,  1],
+    [1, -1],
+    [1,  0],
+    [1,  1]
+  ].freeze
+
   def initialize(board, pos)
     @board, @pos = board, pos
 
@@ -17,8 +28,15 @@ class Tile
     {"pos" => @pos, "revealed"=> @revealed, "bomb?"=> @bomb, "flagged?"=> @flagged}
   end
 
-  def neighbors
-
+  def get_neighbors
+    adjacents = DELTAS.map do |(dx, dy)|
+      [pos[0] + dx, pos[1] + dy]
+    end.select do |row, col|
+      [row, col].all? do |point|
+        point.between?(0, board.board_size-1)
+      end
+    end
+    adjacents.map { |pos| @board[pos] }
   end
 
   def plant_bomb
