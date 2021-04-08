@@ -33,6 +33,6 @@ class Board
 
   def [](pos)
     x,y = pos
-    board[x][y]
+    @board[x][y]
   end
 end

@@ -43,7 +43,7 @@ class Tile
   end
 
   def explore
-    debugger
+    # debugger
     return self if explored
     return self if flagged
 
