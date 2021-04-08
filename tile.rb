@@ -1,9 +1,9 @@
-
+require 'byebug'
 
 class Tile
   
   attr_reader :board, :bomb
-  attr_accessor :flagged, :pos
+  attr_accessor :flagged, :pos, :explored
 
   DELTAS = [
     [-1,-1],
@@ -23,7 +23,7 @@ class Tile
   end
 
   def inspect
-    {"pos" => @pos, "explored?"=> @explored, "bomb?"=> @bomb, "flagged?"=> @flagged}
+    { pos: pos, explored: explored, bomb: bomb, flagged: flagged}
   end
 
   def neighbors
@@ -43,7 +43,16 @@ class Tile
   end
 
   def explore
+    debugger
+    return self if explored
+    return self if flagged
 
+    @explored = true
+    if !bomb && adjacent_bomb_count == 0
+      neighbors.each {|neighbor| neighbor.explore}
+    end
+
+    self
   end
 
   def plant_bomb
