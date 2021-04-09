@@ -39,7 +39,7 @@ class Tile
 
 
   def adjacent_bomb_count
-    neighbors.count{ |neighbor| neighbor.bomb }
+    neighbors.select(&:bomb).count
   end
 
   def explore
