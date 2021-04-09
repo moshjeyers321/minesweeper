@@ -75,7 +75,7 @@ class Tile
   end
   
   def reveal
-  ### called at the end of the game to show the board in its actual state
+  ### called at the end of the game to show the board in its revealed state
     if flagged
       bomb ? "F".light_green : "f".red
     elsif bomb

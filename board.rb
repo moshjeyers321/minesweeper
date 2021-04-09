@@ -50,11 +50,6 @@ class Board
   end
 
   def won?
-  #   board.all? do |row|
-  #     row.none? do |tile|
-  #       tile.bomb && tile.explored
-  #     end
-  #   end
   board.flatten.all? { |tile| tile.bomb != tile.explored }
   end
 
