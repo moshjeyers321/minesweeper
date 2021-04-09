@@ -76,5 +76,12 @@ class Tile
   
   def reveal
   ### called at the end of the game to show the board in its actual state
+    if flagged
+      bomb ? "F".light_green : "f".red
+    elsif bomb
+      explored ? "X".black.on_red : "B".red.on_green
+    else
+      adjacent_bomb_count == 0 ? "_".light_blue : adjacent_bomb_count.to_s.light_green
+    end
   end
 end

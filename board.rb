@@ -36,12 +36,26 @@ class Board
     @board[x][y]
   end
 
-  def render
+  def render(reveal = false)
     puts "  #{(0...board_size).to_a.join(" ")}"
     board.each.with_index do |row, i|
-      print_row = row.map { |tile| tile.render }.join(" ")
+      print_row = row.map { |tile| reveal ? tile.reveal : tile.render }.join(" ")
       puts "#{i} #{print_row}"
     end
     true
   end
+
+  def reveal
+    render(true)
+  end
+
+  def won?
+  #   board.all? do |row|
+  #     row.none? do |tile|
+  #       tile.bomb && tile.explored
+  #     end
+  #   end
+  board.flatten.all? { |tile| tile.bomb != tile.explored }
+  end
+
 end
