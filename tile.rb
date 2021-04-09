@@ -1,4 +1,5 @@
 require 'byebug'
+require 'colorize'
 
 class Tile
   
@@ -65,11 +66,11 @@ class Tile
   
   def render
     if flagged
-      "F"
+      "F".red
     elsif explored
-      adjacent_bomb_count == 0 ? "_" : adjacent_bomb_count.to_s
+      adjacent_bomb_count == 0 ? "_".light_blue : adjacent_bomb_count.to_s.light_green
     else
-      "*"
+      "*".yellow
     end
   end
   

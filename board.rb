@@ -37,8 +37,11 @@ class Board
   end
 
   def render
-    board.each do |row|
-      puts row.map { |tile| tile.render }.join(" ")
+    puts "  #{(0...board_size).to_a.join(" ")}"
+    board.each.with_index do |row, i|
+      print_row = row.map { |tile| tile.render }.join(" ")
+      puts "#{i} #{print_row}"
     end
+    true
   end
 end
