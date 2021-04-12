@@ -37,12 +37,12 @@ class Board
   end
 
   def render(reveal = false)
+    system("clear")
     puts "  #{(0...board_size).to_a.join(" ")}"
     board.each.with_index do |row, i|
       print_row = row.map { |tile| reveal ? tile.reveal : tile.render }.join(" ")
       puts "#{i} #{print_row}"
     end
-    true
   end
 
   def reveal
@@ -53,8 +53,8 @@ class Board
   board.flatten.all? { |tile| tile.bomb != tile.explored }
   end
 
-  def lose?
-  board.flatten.all? { |tile| tile.bomb == tile.explored }
+  def lost?
+  board.flatten.any? { |tile| tile.bomb && tile.explored }
   end
 
 end

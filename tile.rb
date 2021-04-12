@@ -79,7 +79,7 @@ class Tile
     if flagged
       bomb ? "F".light_green : "f".red
     elsif bomb
-      explored ? "X".black.on_red : "B".red.on_green
+      explored ? "X".black.on_red : "B".red
     else
       adjacent_bomb_count == 0 ? "_".light_blue : adjacent_bomb_count.to_s.light_green
     end
