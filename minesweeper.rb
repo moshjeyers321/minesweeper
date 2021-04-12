@@ -30,8 +30,15 @@ class Minesweeper
     when "e"
       tile.explore
     when "s"
-      #will save once i get to that part
+      save
     end
+  end
+
+  def save
+    puts "Enter filename to save at:"
+    filename = gets.chomp
+
+    File.write(filename,YAML.dump(self))
   end
 
 
@@ -59,8 +66,8 @@ if $PROGRAM_NAME == __FILE__
   case ARGV.count
   when 0
     Minesweeper.new(:small).play
-  # when 1
-  #   #resume game, using first argument
-  #   YAML.load_file(ARGV.shift).play
+  when 1
+    #resume game, using first argument
+    YAML.load_file(ARGV.shift).play
   end
 end
