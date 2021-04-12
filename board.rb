@@ -53,4 +53,8 @@ class Board
   board.flatten.all? { |tile| tile.bomb != tile.explored }
   end
 
+  def lose?
+  board.flatten.all? { |tile| tile.bomb == tile.explored }
+  end
+
 end
